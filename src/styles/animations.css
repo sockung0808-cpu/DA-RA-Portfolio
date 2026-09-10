@@ -1,0 +1,262 @@
+/* =========================
+   V10 — SCROLL MOTION SYSTEM
+========================= */
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: 82px;
+}
+
+.scroll-progress {
+  position: fixed;
+  inset: 0 0 auto;
+  z-index: 500;
+  height: 2px;
+  pointer-events: none;
+  background: transparent;
+}
+
+.scroll-progress span {
+  display: block;
+  width: calc(var(--scroll-progress, 0) * 100%);
+  height: 100%;
+  background: linear-gradient(90deg, #087cff, #3bc5ff, #8be5ff);
+  box-shadow: 0 0 16px rgba(55, 197, 255, .7);
+}
+
+.site-bg {
+  will-change: transform;
+  transform: translate3d(0, calc(var(--parallax-y, 0px) * .18), 0) scale(1.015);
+}
+
+.hero-profile-visual {
+  --parallax-y: 0px;
+  will-change: transform;
+  transform: translate3d(0, var(--parallax-y), 0);
+}
+
+.reveal-section {
+  transition: opacity .72s cubic-bezier(.22, 1, .36, 1),
+              transform .72s cubic-bezier(.22, 1, .36, 1),
+              filter .72s ease;
+  filter: blur(2px);
+}
+
+.reveal-section.is-visible {
+  filter: blur(0);
+}
+
+.reveal-section .section-heading,
+.reveal-section .about-intro,
+.reveal-section .projects-grid,
+.reveal-section .skills-layout,
+.reveal-section .process-grid,
+.reveal-section .experience,
+.reveal-section .proof-grid,
+.reveal-section .proof-quote,
+.reveal-section .lab-grid,
+.reveal-section .contact-card {
+  transition: opacity .75s ease, transform .75s cubic-bezier(.22, 1, .36, 1);
+}
+
+.reveal-section:not(.is-visible) .section-heading { opacity: 0; transform: translateY(22px); }
+.reveal-section:not(.is-visible) .about-intro { opacity: 0; transform: translateY(30px); }
+.reveal-section:not(.is-visible) .skills-layout,
+.reveal-section:not(.is-visible) .experience,
+.reveal-section:not(.is-visible) .proof-quote,
+.reveal-section:not(.is-visible) .contact-card { opacity: 0; transform: translateY(30px); }
+.reveal-section:not(.is-visible) .projects-grid,
+.reveal-section:not(.is-visible) .about-grid,
+.reveal-section:not(.is-visible) .process-grid,
+.reveal-section:not(.is-visible) .proof-grid,
+.reveal-section:not(.is-visible) .lab-grid { opacity: 0; transform: translateY(28px); }
+
+.reveal-section.is-visible .section-heading,
+.reveal-section.is-visible .about-intro,
+.reveal-section.is-visible .skills-layout,
+.reveal-section.is-visible .experience,
+.reveal-section.is-visible .proof-quote,
+.reveal-section.is-visible .contact-card { opacity: 1; transform: translateY(0); }
+.reveal-section.is-visible .projects-grid,
+.reveal-section.is-visible .about-grid,
+.reveal-section.is-visible .process-grid,
+.reveal-section.is-visible .proof-grid,
+.reveal-section.is-visible .lab-grid { opacity: 1; transform: translateY(0); }
+
+.about-card,
+.process-card,
+.proof-card,
+.lab-card,
+.skill-item {
+  will-change: transform;
+}
+
+.about-card,
+.process-card,
+.proof-card,
+.lab-card {
+  animation: cardFloatIn .7s cubic-bezier(.22, 1, .36, 1) both;
+}
+
+.reveal-section:not(.is-visible) .about-card,
+.reveal-section:not(.is-visible) .process-card,
+.reveal-section:not(.is-visible) .proof-card,
+.reveal-section:not(.is-visible) .lab-card { animation-play-state: paused; }
+
+.reveal-section.is-visible .about-card:nth-child(2),
+.reveal-section.is-visible .process-card:nth-child(2),
+.reveal-section.is-visible .proof-card:nth-child(2),
+.reveal-section.is-visible .lab-card:nth-child(2) { animation-delay: .08s; }
+.reveal-section.is-visible .about-card:nth-child(3),
+.reveal-section.is-visible .process-card:nth-child(3),
+.reveal-section.is-visible .proof-card:nth-child(3),
+.reveal-section.is-visible .lab-card:nth-child(3) { animation-delay: .16s; }
+.reveal-section.is-visible .about-card:nth-child(4),
+.reveal-section.is-visible .process-card:nth-child(4),
+.reveal-section.is-visible .proof-card:nth-child(4),
+.reveal-section.is-visible .lab-card:nth-child(4) { animation-delay: .24s; }
+
+.project-card {
+  will-change: transform;
+  transition: transform .45s cubic-bezier(.22, 1, .36, 1),
+              border-color .35s ease,
+              box-shadow .45s ease;
+}
+
+.project-card .project-cover img {
+  transition: transform .8s cubic-bezier(.22, 1, .36, 1), filter .5s ease;
+}
+
+.project-card:hover .project-cover img { transform: scale(1.075); }
+
+.project-cover-overlay {
+  transition: opacity .4s ease, transform .4s cubic-bezier(.22, 1, .36, 1);
+}
+
+.project-card:not(:hover) .project-cover-overlay { opacity: .72; }
+.project-card:hover .project-cover-overlay { transform: translateY(-2px); }
+
+.experience-item {
+  transition: opacity .7s ease, transform .7s cubic-bezier(.22, 1, .36, 1);
+}
+
+.reveal-section:not(.is-visible) .experience-item { opacity: 0; transform: translateX(-22px); }
+.reveal-section.is-visible .experience-item { opacity: 1; transform: translateX(0); }
+.experience-item:nth-child(2) { transition-delay: .08s; }
+.experience-item:nth-child(3) { transition-delay: .16s; }
+.experience-item:nth-child(4) { transition-delay: .24s; }
+.experience-item:nth-child(5) { transition-delay: .32s; }
+
+.experience-dot { animation: timelinePulse 2.4s ease-in-out infinite; }
+
+.hero-copy .hero-badge,
+.hero-copy .hero-proof,
+.hero-copy h1,
+.hero-copy h2,
+.hero-copy .hero-line,
+.hero-copy .hero-description,
+.hero-copy .hero-buttons,
+.hero-copy .hero-stats {
+  opacity: 0;
+  animation: heroIn .8s cubic-bezier(.22, 1, .36, 1) forwards;
+}
+.hero-copy .hero-badge { animation-delay: .08s; }
+.hero-copy .hero-proof { animation-delay: .16s; }
+.hero-copy h1 { animation-delay: .24s; }
+.hero-copy h2 { animation-delay: .32s; }
+.hero-copy .hero-line { animation-delay: .40s; }
+.hero-copy .hero-description { animation-delay: .48s; }
+.hero-copy .hero-buttons { animation-delay: .56s; }
+.hero-copy .hero-stats { animation-delay: .64s; }
+
+.hero-profile-visual .portrait-frame {
+  animation: portraitIn 1.15s cubic-bezier(.22, 1, .36, 1) .35s both,
+             portraitFloat 7s ease-in-out 1.5s infinite;
+}
+
+.hero-logo-watermark { animation: watermarkIn 1.3s ease .8s both; }
+.hero-side-label { animation: labelIn .8s ease 1s both; }
+.hero-sig { animation: signatureIn .9s cubic-bezier(.22, 1, .36, 1) 1.05s both; }
+
+@keyframes cardFloatIn {
+  from { opacity: 0; transform: translateY(26px) scale(.985); }
+  to { opacity: 1; transform: translateY(0) scale(1); }
+}
+
+@keyframes heroIn {
+  from { opacity: 0; transform: translateY(24px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes portraitIn {
+  from { opacity: 0; transform: translateY(35px) rotate(5deg) scale(.97); }
+  to { opacity: 1; transform: translateY(0) rotate(2deg) scale(1); }
+}
+
+@keyframes portraitFloat {
+  0%, 100% { transform: translateY(0) rotate(2deg); }
+  50% { transform: translateY(-9px) rotate(1deg); }
+}
+
+@keyframes watermarkIn {
+  from { opacity: 0; transform: rotate(-12deg) scale(.9); }
+  to { opacity: .19; transform: rotate(-7deg) scale(1); }
+}
+
+@keyframes labelIn {
+  from { opacity: 0; transform: translateX(20px); }
+  to { opacity: 1; transform: translateX(0); }
+}
+
+@keyframes signatureIn {
+  from { opacity: 0; transform: translateY(15px) rotate(-13deg); }
+  to { opacity: 1; transform: translateY(0) rotate(-7deg); }
+}
+
+@keyframes timelinePulse {
+  0%, 100% { box-shadow: 0 0 0 0 rgba(45,191,255,.1), 0 0 20px #2dbfff; }
+  50% { box-shadow: 0 0 0 8px rgba(45,191,255,.05), 0 0 28px #2dbfff; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  *, *::before, *::after {
+    animation-duration: .01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: .01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+
+/* V10.5 — scroll depth polish */
+.feature-strip {
+  opacity: 0;
+  transform: translateY(18px);
+  transition: opacity .75s ease, transform .75s cubic-bezier(.22,1,.36,1), border-color .35s ease, box-shadow .35s ease;
+}
+.feature-strip.is-visible { opacity: 1; transform: translateY(0); }
+.feature-strip > div { transition: transform .35s ease; }
+.feature-strip > div:hover { transform: translateY(-3px); }
+
+.navbar {
+  box-shadow: 0 10px 40px rgba(0,0,0,.08);
+}
+
+.project-card:active { transform: translateY(-5px) scale(.995); }
+.btn-primary:active, .btn-outline:active { transform: translateY(0) scale(.98); }
+
+@media (prefers-reduced-motion: reduce) {
+  .site-bg, .hero-profile-visual { transform: none !important; }
+  .feature-strip, .reveal-section, .reveal-section * { animation: none !important; }
+}
+
+
+/* V11 — depth cues */
+.site-bg { backface-visibility: hidden; }
+.hero-profile-visual,
+.portrait-frame,
+.project-card,
+.about-card,
+.process-card,
+.lab-card,
+.proof-card { backface-visibility: hidden; }
