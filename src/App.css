@@ -241,10 +241,29 @@ button { cursor: pointer; }
 
 @media (max-width:760px) {
   .navbar { padding:13px 20px; }
+  .navbar.menu-open {
+    z-index: 1000;
+    isolation: isolate;
+  }
+  .navbar.menu-open::after {
+    content: "";
+    position: fixed;
+    left: 0;
+    right: 0;
+    top: 68px;
+    bottom: 0;
+    z-index: 0;
+    background: rgba(2,11,24,.78);
+    backdrop-filter: blur(4px);
+    -webkit-backdrop-filter: blur(4px);
+    pointer-events: auto;
+  }
+  .navbar.menu-open > * { position: relative; z-index: 1; }
   .nav-menu {
     position:absolute; left:15px; right:15px; top:70px; display:none; flex-direction:column; align-items:stretch;
-    padding:10px; border-radius:17px; background:rgba(3,17,32,.97); border:1px solid var(--border);
-    box-shadow:0 25px 70px rgba(0,0,0,.35);
+    padding:10px; border-radius:17px; background:rgb(3,17,32); border:1px solid var(--border);
+    box-shadow:0 25px 70px rgba(0,0,0,.55);
+    z-index:2;
   }
   .nav-menu.open { display:flex; }
   .nav-menu button { padding:13px; text-align:left; }

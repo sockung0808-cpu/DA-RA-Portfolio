@@ -1,5 +1,5 @@
 import { images } from '../../data/images'
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 
 const items = [
   ['home', 'Trang chủ'],
@@ -21,13 +21,18 @@ type NavbarProps = {
 export default function Navbar({ activeSection, onNavigate }: NavbarProps) {
   const [open, setOpen] = useState(false)
 
+  useEffect(() => {
+    document.body.style.overflow = open ? 'hidden' : ''
+    return () => { document.body.style.overflow = '' }
+  }, [open])
+
   const navigate = (id: string) => {
     onNavigate(id)
     setOpen(false)
   }
 
   return (
-    <header className="navbar">
+    <header className={`navbar ${open ? 'menu-open' : ''}`}>
       <button className="brand" onClick={() => navigate('home')} aria-label="Trang chủ">
         <div className="brand-logo-image">
           <img src={images.logoNav} alt="ĐA RA logo" />
