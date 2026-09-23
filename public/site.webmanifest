@@ -1,0 +1,15 @@
+{
+  "name": "ĐA RA — IT Manager",
+  "short_name": "ĐA RA",
+  "description": "Portfolio cá nhân của ĐA RA — hạ tầng mạng, quản trị IT, web applications và automation.",
+  "lang": "vi",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#020b18",
+  "theme_color": "#020b18",
+  "icons": [{
+    "src": "/images/logo-nav.webp",
+    "sizes": "any",
+    "type": "image/webp"
+  }]
+}
